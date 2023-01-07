@@ -1,0 +1,203 @@
+<%- include ('../layouts/userSigninHeader') %>
+<section
+  class="h-100 gradient-form"
+  style="background-color: rgb(255, 255, 255)"
+>
+  <div class="container py-2 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-xl-8">
+        <div class="card rounded-3 text-black">
+          <div class="row g-0">
+            <div class="col-lg-6">
+              <div class="card-body p-md-2 mx-md-2">
+                <div class="text-center">
+                  <img
+                    src="/assets/images/icons/logo-01.png"
+                    style="width: 185px"
+                    alt="logo"
+                  />
+                  <br /><br />
+                </div>
+
+                <form action="/register" method="post" >
+                  <p><b>Please Register</b></p>
+
+                  <div class="form-outline mb-2">
+                    <label class="form-label" for="form2Example11"
+                      >User Name</label
+                    >
+                    <span id="names" class="text-danger font-weight-bold"></span>
+                    <input
+                      type="text"
+                      id="name"
+                      name="name"
+                      class="form-control"
+                      placeholder="User Name" 
+                    />
+                    
+                  </div>
+
+                  <div class="form-outline mb-2">
+                    <label class="form-label" for="form2Example22">Email</label>
+                    <span id="emailid" class="text-danger font-weight-bold"></span>
+                    <input
+                      type="email"
+                      id="email"
+                      name="email"
+                      class="form-control"
+                      placeholder="Email" 
+                    />
+                    
+                  </div>
+
+                  <div class="form-outline mb-2">
+                    <label class="form-label" for="form2Example22"
+                      >Phone Number</label
+                    >
+                    <span id="mobileno." class="text-danger font-weight-bold"></span>
+                    <input
+                      type="number"
+                      id="mobile"
+                      name="mno"
+                      class="form-control"
+                      placeholder="Phone Number" 
+                    />
+                    
+                  </div>
+
+                  <div class="form-outline mb-2">
+                    <label class="form-label" for="form2Example22"
+                      >Password</label
+                    >
+                    <span id="passwords" class="text-danger font-weight-bold"></span>
+                    <input
+                      type="password"
+                      id="pass"
+                      name="password"
+                      class="form-control"
+                      placeholder="Password" 
+                    />
+                    
+                  </div>
+
+                  <div class="form-outline mb-2">
+                    <label class="form-label" for="form2Example22"
+                      >Confirm Password</label
+                    >
+                    <span id="conpassword" class="text-danger font-weight-bold"></span>
+                    <input
+                      type="password"
+                      id="conpass"
+                      name="password2"
+                      class="form-control"
+                      placeholder="Confirm Password" 
+                    />
+                    
+                  </div>
+                  
+                    <% if(typeof message !=='undefined' ) { %>
+                  <p style="color: rgb(255, 0, 0); font-weight: bold">
+                    <%= message %>
+                  </p>
+                  <% } %>
+
+                  <div class="text-center pt-1 mb-3 pb-1">
+                    <button
+                      class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3"
+                      type="submit" name="submit" onclick="return validation()"
+                    >
+                      Register
+                    </button>
+                  </div>
+                  <div
+                    class="d-flex align-items-center justify-content-center pb-4"
+                  >
+                    <button
+                      type="button"
+                      class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3"
+                    >
+                      <a
+                        style="text-decoration: none; color: rgb(255, 255, 255)"
+                        href="/login"
+                        >Login</a
+                      >
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+            <div class="col-lg-6 d-flex gradient-custom-2">
+              <img class="img-fluid" src="/assets/images/gallery-03.jpg" alt="" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script type="text/javascript">
+  function validation(){
+    var user = document.getElementById('name').value;
+    var email = document.getElementById('email').value;
+    var mobile = document.getElementById('mobile').value;
+    var pass = document.getElementById('pass').value;
+    var conpass = document.getElementById('conpass').value;
+
+    if(user == ""){
+      document.getElementById('names').innerHTML = " Please fill the username field";
+      return false;
+    }
+    if((user.length <= 3) || (user.length > 20)){
+      document.getElementById('names').innerHTML = " User length should be b/n 3 to 20";
+      return false;
+    }
+    if(!isNaN(user)){
+      document.getElementById('names').innerHTML = " No. is not allowed";
+      return false;
+    }
+    if(email == ""){
+      document.getElementById('emailid').innerHTML = " Please fill the email field";
+      return false;
+    }
+    if(email.indexOf('@') <= 0){
+      document.getElementById('emailid').innerHTML = " @ Invalid Positon";
+      return false;
+    }
+      
+    if((email.charAt(email.length-4)!='.') && (email.charAt(email.length-3)!='.')) {
+      document.getElementById('emailid').innerHTML = " . Invalid Positon";
+      return false;
+    }
+    if(mobile == ""){
+      document.getElementById('mobileno.').innerHTML = " Please fill the mobile field";
+      return false;
+    }
+    if(isNaN(mobile)){
+      document.getElementById('mobileno.').innerHTML = " Please fill only No.";
+      return false;
+    }
+    if(mobile.length!=10){
+      document.getElementById('mobileno.').innerHTML = " Only ten no. allow";
+      return false;
+    }
+    if(pass == ""){
+      document.getElementById('passwords').innerHTML = " Please fill the password field";
+      return false;
+    }
+    if((pass.length <= 3) || (pass.length > 20)){
+      document.getElementById('passwords').innerHTML = " password length should be b/n 3 to 20";
+      return false;
+    }
+    if(pass!=conpass){
+      document.getElementById('passwords').innerHTML = " password does not match";
+      return false;
+    }
+    if(conpass == ""){
+      document.getElementById('conpassword').innerHTML = " Please fill the confirm password field";
+      return false;
+    }
+  }
+</script>
+
+<%- include ('../layouts/userSigninFooter') %>

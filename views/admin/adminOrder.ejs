@@ -1,0 +1,225 @@
+
+<%- include ('../layouts/adminHeader') %>
+
+<div class="wrapper">
+	<div class="sidebar" data-background-color="white" data-active-color="danger">
+
+    <!--
+		Tip 1: you can change the color of the sidebar's background using: data-background-color="white | black"
+		Tip 2: you can change the color of the active button using the data-active-color="primary | info | success | warning | danger"
+	-->
+
+    	<div class="sidebar-wrapper">
+            <div class="logo">
+                    <img src="/assets/images/icons/logo-01.png" alt="">
+            </div>
+            <ul class="nav">
+                <li>
+                    <a href="/admin/">
+                        <i class="ti-panel"></i>
+                        <p>Dashboard</p>
+                    </a>
+                </li>
+               
+                <li>
+                    <a href="adminUser">
+                        <i class="ti-view-list-alt"></i>
+                        <p>Users List</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="adminProduct">
+                        <i class="ti-view-list-alt"></i>
+                        <p>admin Product</p>
+                    </a>
+                </li>
+                <li class="active">
+                    <a href="adminOrder">
+                        <i class="ti-pencil-alt2"></i>
+                        <p>admin Order</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="admin-category">
+                        <i class="ti-map"></i>
+                        <p>admin category</p>
+                    </a>
+                </li>
+                <li >
+                    <a href="/admin/loadBanners">
+                        <i class="ti-map"></i>
+                        <p>Banners</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="admin-offer">
+                        <i class="ti-bell"></i>
+                        <p>Offer</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="/admin/salesReport">
+                        <i class="ti-download"></i>
+                        <p>Sales Report</p>
+                    </a>
+                  </li>
+                <li>
+                    <a href="/admin/adminlogout"
+                      ><i class="fa fa-power-off m-r-5 m-l-5"></i> Logout</a
+                    >
+                  </li>
+				
+            </ul>
+    	</div>
+    </div>
+
+    <div class="main-panel">
+		<nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar bar1"></span>
+                        <span class="icon-bar bar2"></span>
+                        <span class="icon-bar bar3"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">Orders</a>
+                </div>
+                <div class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="ti-panel"></i>
+								<p>Stats</p>
+                            </a>
+                        </li>
+                        <li class="dropdown">
+                              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="ti-bell"></i>
+                                    <p class="notification">5</p>
+									<p>Notifications</p>
+									<b class="caret"></b>
+                              </a>
+                              <ul class="dropdown-menu">
+                                <li><a href="#">Notification 1</a></li>
+                                <li><a href="#">Notification 2</a></li>
+                                <li><a href="#">Notification 3</a></li>
+                                <li><a href="#">Notification 4</a></li>
+                                <li><a href="#">Another notification</a></li>
+                              </ul>
+                        </li>
+						<li>
+                            <a href="#">
+								<i class="ti-settings"></i>
+								<p>Settings</p>
+                            </a>
+                        </li>
+                    </ul>
+
+                </div>
+            </div>
+        </nav>
+        
+
+
+        <div class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="header">
+                                
+                            </div>
+                            <div class="card-body">
+                                <h4 class="card-title">Orders List</h4>
+                                <!-- <h6 class="card-subtitle">Add <code>.table-hover</code> to enable a hover state on table
+                                    rows within a <code>&lt;tbody&gt;</code>.</h6> -->
+                                    <a href="/admin/adminOrder?id=all" class="btn btn-danger text-white">All Orders</a>
+                                    <a href="/admin/adminOrder?id=comfirmed" class="btn btn-danger text-white">Comfirmed Orders</a>
+                                    <a href="/admin/adminOrder?id=delivered" class="btn btn-danger text-white">Delivered Orders</a>
+                    
+                            </div>
+                            <div class="content table-responsive table-full-width">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <th>SI NO</th>
+                                    	<th>User Id</th>
+                                    	<th>Order Id</th>
+                                    	<th>Date</th>
+                                    	<th>Status</th>
+                                        <th>Bill Amount</th>
+                                        <th>Action</th>
+                                    </thead>
+                                    <tbody>
+                                        <% if(order.length>0){ %>
+                                            <% for(let i=1;i <order.length; i++){ %>  
+                                        <tr>
+                                        	<th><%= i %> </th>
+                                            <td>
+                                                <%= order[i-1]._id %>
+                                            </td> 
+                                            <td>
+                                                <%= order[i-1].userId %>
+                                            </td>
+                                            <td>
+                                                <%= order[i-1].createdAt.toDateString() %>
+                                            </td>
+                                            <td>
+                                                <%= order[i-1].payment %>
+                                            </td>   
+                                            <td>
+                                                <%= order[i-1].products.totalPrice %>
+                                            </td>
+                                            <td>
+                                                <%= order[i-1].status %>
+                                            </td>     
+                                            
+                                        </tr>
+                                        <% } } else{ %>
+                                            <tr>
+                                                <td colspan="5">Orders Not Found</td>
+                                            </tr>
+                                            <% } %>
+                                        
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer class="footer">
+            <div class="container-fluid">
+                <nav class="pull-left">
+                    <ul>
+
+                        <li>
+                            <a href="http://www.creative-tim.com">
+                                Creative Tim
+                            </a>
+                        </li>
+                        <li>
+                            <a href="http://blog.creative-tim.com">
+                               Blog
+                            </a>
+                        </li>
+                        <li>
+                            <a href="http://www.creative-tim.com/license">
+                                Licenses
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+				<div class="copyright pull-right">
+                    &copy; <script>document.write(new Date().getFullYear())</script>, made with <i class="fa fa-heart heart"></i> by <a href="http://www.creative-tim.com">Creative Tim</a>
+                </div>
+            </div>
+        </footer>
+
+
+    </div>
+</div>
+<%- include ('../layouts/adminSidebar') %>

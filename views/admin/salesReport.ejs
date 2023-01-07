@@ -1,0 +1,136 @@
+
+<%- include('../layouts/adminHeader') %>
+<div class="wrapper">
+  <div class="sidebar" data-background-color="white" data-active-color="warning">
+      <div class="sidebar-wrapper">
+          <div class="logo">
+              <img src="/assets/images/icons/logo-01.png" alt="">
+          </div>
+
+          <ul class="nav">
+              <li>
+                  <a href="/admin/">
+                      <i class="ti-panel"></i>
+                      <p>Dashboard</p>
+                  </a>
+              </li>
+              <li>
+                  <a href="adminUser">
+                      <i class="ti-view-list-alt"></i>
+                      <p>Users List</p>
+                  </a>
+              </li>
+              <li>
+                  <a href="adminProduct">
+                      <i class="ti-view-list-alt"></i>
+                      <p>admin Product</p>
+                  </a>
+              </li>
+              <li>
+                  <a href="adminOrder">
+                      <i class="ti-pencil-alt2"></i>
+                      <p>admin Order</p>
+                  </a>
+              </li>
+              <li>
+                  <a href="admin-category">
+                      <i class="ti-map"></i>
+                      <p>admin category</p>
+                  </a>
+              </li>
+              <li >
+                  <a href="/admin/loadBanners">
+                      <i class="ti-map"></i>
+                      <p>Banners</p>
+                  </a>
+              </li>
+              <li>
+                <a href="admin-offer">
+                    <i class="ti-bell"></i>
+                    <p>Offer</p>
+                </a>
+            </li>
+            <li class="active" >
+              <a href="/admin/salesReport">
+                  <i class="ti-download"></i>
+                  <p>Sales Report</p>
+              </a>
+            </li>
+            <li>
+              <a href="/admin/adminlogout"
+                ><i class="fa fa-power-off m-r-5 m-l-5"></i> Logout</a
+              >
+            </li>
+          </ul>
+          
+      </div>
+  </div>
+  <div class="main-panel">
+<div class="container mt-3" style="padding-top: 10vh; z-index: 3  ;">
+    <h3 style="margin-left: 40%;">Sales Report</h3>
+    <form action="/admin">
+      <button class="pb-1 btn btn-primary"  type="submit">Go Back</button>
+    </form>
+  <table id="myTab" class="table align-middle mb-0 bg-white">
+      <thead class="bg-light">
+        <tr>
+          <th>Product</th>
+          <th>Category</th>
+          <th>Quantity Sold</th>
+          <th>Total Price</th>
+        </tr>
+      </thead>
+      <tbody>
+          <%for(let i=1;i<=products.length;i++){%>
+        <tr>
+          <td>
+            <div class="d-flex align-items-center">
+              
+              <img
+                  src="/assets/uploads/<%= products[i-1].image %>"
+                  alt=""
+                  style="width: 45px; height: 45px"
+                  class="rounded-circle"
+                  />
+                  
+              <div class="ms-3">
+                <p class="fw-bold mb-1 ml-3"><%= products[i-1].name %></p>
+                
+              </div>
+            </div>
+          </td>
+          <td>
+            <p class="fw-bold mb-1 ml-3"><%= products[i-1].genre %></p>
+            
+          </td>
+          <td>
+              <div>
+                <p class="fw-bold mb-1 ml-3">Quantity:<%= products[i-1].platform  %> </p>
+              </div>
+          </td>
+          <td>
+              <p class="fw-bold mb-1 ml-3">Price: ₹<%= products[i-1].price %></p>
+          </td>
+          
+        </tr>
+        <%}%>
+        
+      </tbody>
+    </table>
+    </div>
+    </div>
+  </div>
+    </div>
+    <script>
+      $(document).ready(function() {
+      $('#myTab').DataTable( {
+          dom: 'Bfrtip',
+          buttons: [
+              'copy', 'csv', 'excel', 'pdf', 'print'
+          ]
+      } );
+  } )
+      </script>
+
+<%- include('../layouts/adminSidebar') %>
+

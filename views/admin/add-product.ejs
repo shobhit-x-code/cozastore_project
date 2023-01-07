@@ -1,0 +1,216 @@
+<%- include('../layouts/adminHeader') %>
+<div class="wrapper">
+<div class="sidebar" data-background-color="white" data-active-color="danger">
+  <div class="sidebar-wrapper">
+      <div class="logo">
+              <img src="/assets/images/icons/logo-01.png" alt="">
+      </div>
+      <ul class="nav">
+          <li>
+              <a href="/admin/">
+                  <i class="ti-panel"></i>
+                  <p>Dashboard</p>
+              </a>
+          </li>
+          
+          <li>
+              <a href="adminUser">
+                  <i class="ti-view-list-alt"></i>
+                  <p>Users List</p>
+              </a>
+          </li>
+          <li  class="active" >
+              <a href="adminProduct">
+                  <i class="ti-view-list-alt"></i>
+                  <p>admin product</p>
+              </a>
+          </li>
+          <li>
+              <a href="adminOrder">
+                  <i class="ti-pencil-alt2"></i>
+                  <p>admin order</p>
+              </a>
+          </li>
+          <li>
+              <a href="admin-category">
+                  <i class="ti-view-list-alt"></i>
+                  <p>Admin Category</p>
+              </a>
+          </li>
+          <li>
+            <a href="/admin/loadBanners">
+                <i class="ti-map"></i>
+                <p>Banners</p>
+            </a>
+        </li>
+          <li>
+              <a href="admin-offer">
+                  <i class="ti-bell"></i>
+                  <p>Offer</p>
+              </a>
+          </li>
+          <li>
+            <a href="/admin/salesReport">
+                <i class="ti-download"></i>
+                <p>Sales Report</p>
+            </a>
+          </li>
+          <li>
+            <a href="/admin/adminlogout"
+              ><i class="fa fa-power-off m-r-5 m-l-5"></i> Logout</a
+            >
+          </li>
+          
+      </ul>
+  </div>
+  </div>
+
+  <div class="main-panel">
+  <nav class="navbar navbar-default" style="margin-bottom: 5rem;">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar bar1"></span>
+                <span class="icon-bar bar2"></span>
+                <span class="icon-bar bar3"></span>
+            </button>
+            <a class="navbar-brand" href="#">Add Product</a>
+        </div>
+        <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <i class="ti-panel"></i>
+                        <p>Stats</p>
+                    </a>
+                </li>
+                <li class="dropdown">
+                      <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="ti-bell"></i>
+                            <p class="notification">5</p>
+                            <p>Notifications</p>
+                            <b class="caret"></b>
+                      </a>
+                      <ul class="dropdown-menu">
+                        <li><a href="#">Notification 1</a></li>
+                        <li><a href="#">Notification 2</a></li>
+                        <li><a href="#">Notification 3</a></li>
+                        <li><a href="#">Notification 4</a></li>
+                        <li><a href="#">Another notification</a></li>
+                      </ul>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="ti-settings"></i>
+                        <p>Settings</p>
+                    </a>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+</nav>
+
+
+<form action="/admin/add-product" method="post" class="my-auto" style="height: 80vh; display: flex; justify-content: center;" enctype="multipart/form-data">
+    <div class="container h-100 justify-content-center align-items-center" >
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-lg-12 col-xl-11">
+                <div class="card bg-transparent" style="border-radius: 25px;">
+                    <div class="card-body p-md-2">
+                        <div class="row justify-content-center" style=" display: flex; justify-content: center;">
+                            <div class="col-md-2 col-lg-6 col-xl-5 order-2 order-lg-1 width-50" style="padding: 2rem;">
+                                
+
+                                <form class="mx-1 mx-md-2" >
+      
+                                    <div class="d-flex flex-row align-items-center mb-2">
+                                      
+                                      <div class="form-outline flex-fill m-b-5">
+                                        <label class="form-label" for="form3Example1c">Name</label>
+                                        <input type="text" id="form3Example1c" class="form-control" name="gName" required/>
+                                      </div>
+                                    </div>
+                  
+                                    <div class="d-flex flex-row align-items-center mb-2">
+                                      
+                                      <div class="form-outline flex-fill mb-0">
+                                        <label class="form-label" for="form3Example3c">Stock</label>
+                                        <input type="text" id="form3Example3c" class="form-control" name="gPlatform" required/>
+                                        
+                                      </div>
+                                    </div>
+                  
+                                    <div class="d-flex flex-row align-items-center mb-2">
+                                       
+                                        <div class="form-outline flex-fill mb-0">
+                                            <label class="form-label" for="form3Example1c">Price</label>
+                                          <input type="number" id="form3Example1c" class="form-control" name="gPrice" required/>
+                                          
+                                        </div>
+                                      </div>
+            
+                                    <div class="d-flex flex-row align-items-center mb-2">
+                                     
+                                      <div class="form-outline flex-fill mb-0">
+                                        <label class="form-label" for="form3Example4c">Description</label>
+                                        <input type="text" id="form3Example4c" class="form-control" name="gDescription" required/>
+                                        
+                                      </div>
+                                    </div>
+
+                                    <div class="d-flex flex-row align-items-center mb-2">
+                                       
+                                      <div class="form-outline flex-fill mb-0">
+                                          <label class="form-label" for="form3Example1c">Rating</label>
+                                        <input type="number" id="form3Example1c" class="form-control" name="gRating"  max="5" required/>
+                                        
+                                      </div>
+                                    </div>
+
+                                    <div class="d-flex flex-row align-items-center mb-2">
+                                       
+                                      <div class="form-outline flex-fill mb-0">
+                                        <label class="form-label  select-label" for="form3Example1c">Category</label>
+                                        <select name="genre" class="form-control">
+                                          <option value="" disabled selected>Select a Genre</option>
+                                          <% if(category){ %>
+                                          <% for(let i=1;i <= category.length; i++){ %>
+                                            <option value="<%= category[i-1].name %>">
+                                              <%= category[i-1].name %>
+                                            </option>
+                                            <% } %>
+                                          <% }else{ %>
+                                            <h1>No Categories to add</h1>
+                                          <% } %>  
+                                        </select>
+                                       
+                                      </div>
+                                    </div>
+                                    <div class="d-flex flex-row align-items-center mb-4">
+                                        <div class="form-outline flex-fill mb-0">
+                                          <label class="form-label" for="form3Example4c">Image</label>
+                                          <input type="file" id="form3Example4c" class="form-control" name="gImage" required/>
+                                        </div>
+                                      </div>
+                                    <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4" style="margin: 1rem;">
+                                      <button  type="submit" value="Register" class="btn btn-primary btn">Add Product</button>
+                                      <a href="/admin/adminProduct" class="btn btn-primary ml-2 btn">Go Back</a>
+                                    </div>
+            
+                                    <% if(typeof message !== 'undefined'){%>
+                                        <p style="color:green"><%= message %></p>
+                                    <% } %>
+                                  </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+</form>
+</div>
+</div>
+
+<%- include('../layouts/adminSidebar') %>

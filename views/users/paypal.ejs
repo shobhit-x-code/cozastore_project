@@ -1,0 +1,112 @@
+<% if(isLoggedin) { %>
+	<%- include('../layouts/userLoggedinHeader') %>
+	<% }else { %>
+	<%- include('../layouts/userHeader') %>
+	<% } %>
+
+    <div class="container h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-lg-12 col-xl-11">
+                <div class="card bg-transparent" style="border-radius: 25px;">
+                    <div class="card-body p-md-5">
+                        <div class="row justify-content-center">
+                            <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
+                                <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4"><span
+                                        class="text-main-1">Paypal Process</span> To Payment</p>
+
+                                <div class="d-flex flex-row align-items-center mb-4 text-center">
+                                    <!-- <i class="fas fa-envelope fa-lg fa-fw text-center"></i> -->
+                                    <div class="form-outline flex-fill mb-0">
+                                        <label class="text-center form-label" for="form3Example3c">Click Below to
+                                            Pay <br>Total:<%= total %></label>
+                                        <input type="hidden" id="total" value="<%= total %>">
+                                    </div>
+                                </div>
+
+                                <div class="row vertical-gap">
+                                    <div class="col-md-12">
+                                        <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+
+
+                                            <div id="paypal-button-container"></div>
+                                            <!-- Sample PayPal credentials (client-id) are included -->
+                                            <script
+                                                src="https://www.paypal.com/sdk/js?client-id=AaSaTLn6P8dEP56FaRh-FMMZj2c2NrWwc9aqu2ravuX-Bad5uGkkJ90LAFoWTzoV2hEyaKkyWITW2RVc&currency=USD&intent=capture&enable-funding=venmo"
+                                                data-sdk-integration-source="integrationbuilder"></script>
+                                            <script>
+                                                const total = document.getElementById('total')
+                                                console.log('type:',typeof(total.value),' value:',total.value);
+                                                
+                                                const paypalButtonsComponent = paypal.Buttons({
+                                                    // optional styling for buttons
+                                                    // https://developer.paypal.com/docs/checkout/standard/customize/buttons-style-guide/
+                                                    style: {
+                                                        color: "gold",
+                                                        shape: "rect",
+                                                        layout: "vertical"
+                                                    },
+
+                                                    // set up the transaction
+                                                    createOrder: (data, actions) => {
+                                                        // pass in any options from the v2 orders create call:
+                                                        // https://developer.paypal.com/api/orders/v2/#orders-create-request-body
+                                                        const createOrderPayload = {
+                                                            purchase_units: [
+                                                                {
+                                                                    amount: {
+                                                                        value: total.value
+                                                                    }
+                                                                }
+                                                            ]
+                                                        };
+
+                                                        return actions.order.create(createOrderPayload);
+                                                    },
+
+                                                    // finalize the transaction
+                                                    onApprove: (data, actions) => {
+                                                        const captureOrderHandler = (details) => {
+                                                            const payerName = details.payer.name.given_name;
+                                                            console.log('Transaction completed');
+                                                            window.location.replace("http://localhost:3000/order-success")
+                                                        };
+
+                                                        return actions.order.capture().then(captureOrderHandler);
+                                                    },
+
+                                                    // handle unrecoverable errors
+                                                    onError: (err) => {
+                                                        console.error('An error prevented the buyer from checking out with PayPal');
+                                                    }
+                                                });
+
+                                                paypalButtonsComponent
+                                                    .render("#paypal-button-container")
+                                                    .catch((err) => {
+                                                        console.error('PayPal Buttons failed to render');
+                                                    });
+                                            </script>
+
+
+                                            
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                                <div class="row vertical-gap">
+                                    <div class="col-md-12">
+                                        <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+                                            <a class href="/checkout" class="btn text-center btn-danger ml-2 btn-lg">Go Back</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+<%- include('../layouts/userFooter') %>
