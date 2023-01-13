@@ -660,35 +660,7 @@ const addCoupon = async(req,res)=>{
 }
 
 
-const viewBlog = async (req, res) => {
-    userSession = req.session
-    const userData = await User.findById({ _id: userSession.userId })
-    try {
-        res.render('blog',{ isLoggedin, id: userSession.userId, } )
-    } catch (error) {
-        console.log(error)
-    }
-}
 
-const viewAbout = async (req, res) => {
-    userSession = req.session
-    const userData = await User.findById({ _id: userSession.userId })
-    try {
-        res.render('about',{ isLoggedin, id: userSession.userId, } )
-    } catch (error) {
-        console.log(error)
-    }
-}
-
-const viewContact = async (req, res) => {
-    userSession = req.session
-    const userData = await User.findById({ _id: userSession.userId })
-    try {
-        res.render('contact',{ isLoggedin, id: userSession.userId, } )
-    } catch (error) {
-        console.log(error)
-    }
-}
 
 
 
@@ -761,9 +733,6 @@ module.exports = {
     razorpayCheckout,
     paypalCheckout,
     addCoupon,
-    viewBlog,
-    viewAbout,
-    viewContact,
     deleteAddress,
     addAddress,
     loadCategory,

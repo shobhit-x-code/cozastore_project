@@ -72,11 +72,6 @@ user_route.get('/loadCategory',userController.loadCategory)
 user_route.post('/razorpay',userMiddleware.isLogin,userController.razorpayCheckout)
 user_route.post('paypal',userMiddleware.isLogin,userController.paypalCheckout)
 
-user_route.get('/blog',userController.viewBlog)
-user_route.get('/about',userController.viewAbout)
-user_route.get('/contact',userController.viewContact)
-
-
 
 user_route.get('/logout',userMiddleware.isLogin,userController.userLogout)
 
