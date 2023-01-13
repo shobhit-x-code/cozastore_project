@@ -54,7 +54,7 @@
         <li>
             <a href="/admin/salesReport">
                 <i class="ti-download"></i>
-                <p>Sales Report</p>
+                <p>Product List</p>
             </a>
           </li>
         <li>
@@ -131,6 +131,11 @@
                             Add Category <span class="panel-heading-arrow fa fa-angle-down text-white"></span>
                         </a>
                     </div>
+                    <% if(typeof message !=='undefined' ) { %>
+                        <p style="color: rgb(255, 0, 0); font-weight: bold">
+                          <%= message %>
+                        </p>
+                        <% } %>
                     <div id="accordion-1-1" class="panel-collapse collapse" role="tabpanel"
                         aria-labelledby="accordion-1-1-heading">
                         <form action="admin-category" method="post">
@@ -185,8 +190,8 @@
                                                 </td>
                                                 <td>
                                                     <a class="text-danger"
-                                                        href="/admin/delete-category?id=<%= category[i-1]._id %>"><i
-                                                            style="color: #ff0000;"
+                                                    onclick="return confirm('do you want to delete <%= category[i-1].name %>?')"   href="/admin/delete-category?id=<%= category[i-1]._id %>"><i
+                                                           style="color: #ff0000;"
                                                             class="m-r-5 mdi mdi-border-color"></i>Delete</a><br>
                                                 </td>
                                             </tr>

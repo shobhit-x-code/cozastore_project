@@ -1,5 +1,6 @@
 
-	<%- include('../layouts/userLoggedinHeader') %>
+<% if(isLoggedin) { %> <%- include('../layouts/userLoggedinHeader') %> <% }else
+{ %> <%- include('../layouts/userHeader') %> <% } %>
 	
 
 <body class="animsition">

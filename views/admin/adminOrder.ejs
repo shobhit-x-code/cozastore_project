@@ -4,10 +4,7 @@
 <div class="wrapper">
 	<div class="sidebar" data-background-color="white" data-active-color="danger">
 
-    <!--
-		Tip 1: you can change the color of the sidebar's background using: data-background-color="white | black"
-		Tip 2: you can change the color of the active button using the data-active-color="primary | info | success | warning | danger"
-	-->
+
 
     	<div class="sidebar-wrapper">
             <div class="logo">
@@ -60,7 +57,7 @@
                 <li>
                     <a href="/admin/salesReport">
                         <i class="ti-download"></i>
-                        <p>Sales Report</p>
+                        <p>Product List</p>
                     </a>
                   </li>
                 <li>
@@ -84,6 +81,7 @@
                         <span class="icon-bar bar3"></span>
                     </button>
                     <a class="navbar-brand" href="#">Orders</a>
+                    
                 </div>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-right">
@@ -94,28 +92,31 @@
                             </a>
                         </li>
                         <li class="dropdown">
-                              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <i class="ti-bell"></i>
-                                    <p class="notification">5</p>
-									<p>Notifications</p>
-									<b class="caret"></b>
-                              </a>
-                              <ul class="dropdown-menu">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="ti-bell"></i>
+                                <p class="notification">5</p>
+                                <p>Notifications</p>
+                                <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
                                 <li><a href="#">Notification 1</a></li>
                                 <li><a href="#">Notification 2</a></li>
                                 <li><a href="#">Notification 3</a></li>
                                 <li><a href="#">Notification 4</a></li>
                                 <li><a href="#">Another notification</a></li>
-                              </ul>
+                            </ul>
                         </li>
 						<li>
                             <a href="#">
-								<i class="ti-settings"></i>
+                                <i class="ti-settings"></i>
 								<p>Settings</p>
                             </a>
                         </li>
                     </ul>
-
+                    
+                </div>
+                <div style="display: flex; flex-direction: row; justify-content: right;">
+                    <a href="/admin/exportOrder"><button class="btn btn-danger text-white" style="border-radius: 50px;">Download Order</button></a>
                 </div>
             </div>
         </nav>
@@ -130,24 +131,18 @@
                             <div class="header">
                                 
                             </div>
-                            <div class="card-body">
-                                <h4 class="card-title">Orders List</h4>
-                                <!-- <h6 class="card-subtitle">Add <code>.table-hover</code> to enable a hover state on table
-                                    rows within a <code>&lt;tbody&gt;</code>.</h6> -->
-                                    <a href="/admin/adminOrder?id=all" class="btn btn-danger text-white">All Orders</a>
-                                    <a href="/admin/adminOrder?id=comfirmed" class="btn btn-danger text-white">Comfirmed Orders</a>
-                                    <a href="/admin/adminOrder?id=delivered" class="btn btn-danger text-white">Delivered Orders</a>
-                    
-                            </div>
+                            
                             <div class="content table-responsive table-full-width">
-                                <table class="table table-striped">
+                                <table id="orderlist" class="table table-striped">
                                     <thead>
                                         <th>SI NO</th>
-                                    	<th>User Id</th>
+                                        <th>images & prices</th>
                                     	<th>Order Id</th>
+                                    	<th>User Name</th>
                                     	<th>Date</th>
-                                    	<th>Status</th>
+                                    	<th>Payment Status</th>
                                         <th>Bill Amount</th>
+                                        <th>status</th>
                                         <th>Action</th>
                                     </thead>
                                     <tbody>
@@ -156,10 +151,20 @@
                                         <tr>
                                         	<th><%= i %> </th>
                                             <td>
+                                                <% order[i-1].products.item.forEach(x=>{ %>
+                                                               <img style="width:2.5rem ;height: 3rem;" src="/assets/uploads/<%=x.productId.image %>" alt=""> 
+                                                               <br>
+                                                               ₹<%=x.productId.price %>
+                                                               <br>
+                                              <%  })%> 
+                                            
+                                            </td>
+                                            
+                                            <td>
                                                 <%= order[i-1]._id %>
                                             </td> 
                                             <td>
-                                                <%= order[i-1].userId %>
+                                                <%= order[i-1].userId.name %>
                                             </td>
                                             <td>
                                                 <%= order[i-1].createdAt.toDateString() %>
@@ -172,7 +177,21 @@
                                             </td>
                                             <td>
                                                 <%= order[i-1].status %>
-                                            </td>     
+                                            </td>  
+                                            <td>
+                                                <form action="" method="post">
+                                                    <select name="status" >
+                                                        <option ><%= order[i-1].status %> </option>
+                                                        <option >In Progress</option>
+                                                        <option >Packed</option>
+                                                        <option >Shipped</option>
+                                                        <option >Delivered</option>
+                                                        <option >Canceled</option>
+                                                    </select>
+                                                    <input type="hidden" name="orderid" value="<%= order[i-1]._id %>">
+                                                    <button type="submit" class="border border-primary rounded">Update</button>
+                                                </form>
+                                            </td>   
                                             
                                         </tr>
                                         <% } } else{ %>
@@ -190,6 +209,7 @@
                 </div>
             </div>
         </div>
+ 
 
         <footer class="footer">
             <div class="container-fluid">
@@ -217,9 +237,12 @@
                     &copy; <script>document.write(new Date().getFullYear())</script>, made with <i class="fa fa-heart heart"></i> by <a href="http://www.creative-tim.com">Creative Tim</a>
                 </div>
             </div>
-        </footer>
-
-
+        </footer>  
     </div>
 </div>
+<script>
+    $(document).ready( function () {
+    $('#orderlist').DataTable();
+    } );
+</script>
 <%- include ('../layouts/adminSidebar') %>

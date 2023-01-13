@@ -35,8 +35,8 @@ const addressSchema = new mongoose.Schema({
         type: String,
         required: true
       },
-      phone: {
-        type: String,
+      mobile: {
+        type: Number,
         required: true
       },
 })

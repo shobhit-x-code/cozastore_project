@@ -1,235 +1,234 @@
-
 <%- include ('../layouts/adminHeader') %>
 
 <div class="wrapper">
-	<div class="sidebar" data-background-color="white" data-active-color="danger">
+  <div class="sidebar" data-background-color="white" data-active-color="danger">
 
     <!--
 		Tip 1: you can change the color of the sidebar's background using: data-background-color="white | black"
 		Tip 2: you can change the color of the active button using the data-active-color="primary | info | success | warning | danger"
 	-->
 
-    	<div class="sidebar-wrapper">
-            <div class="logo">
-                    <img src="/assets/images/icons/logo-01.png" alt="">
-            </div>
-            <ul class="nav">
-                <li>
-                    <a href="/admin/">
-                        <i class="ti-panel"></i>
-                        <p>Dashboard</p>
-                    </a>
-                </li>
-               
-                <li class="active">
-                    <a href="adminUser">
-                        <i class="ti-view-list-alt"></i>
-                        <p>Users List</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="adminProduct">
-                        <i class="ti-view-list-alt"></i>
-                        <p>admin Product</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="adminOrder">
-                        <i class="ti-pencil-alt2"></i>
-                        <p>admin Order</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="admin-category">
-                        <i class="ti-map"></i>
-                        <p>admin category</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="/admin/loadBanners">
-                        <i class="ti-map"></i>
-                        <p>Banners</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="admin-offer">
-                        <i class="ti-bell"></i>
-                        <p>Offer</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="/admin/salesReport">
-                        <i class="ti-download"></i>
-                        <p>Sales Report</p>
-                    </a>
-                  </li>
-				<li>
-                    <a href="/admin/adminlogout"
-                      ><i class="fa fa-power-off m-r-5 m-l-5"></i> Logout</a
-                    >
-                  </li>
-            </ul>
-    	</div>
+    <div class="sidebar-wrapper">
+      <div class="logo">
+        <img src="/assets/images/icons/logo-01.png" alt="">
+      </div>
+      <ul class="nav">
+        <li>
+          <a href="/admin/">
+            <i class="ti-panel"></i>
+            <p>Dashboard</p>
+          </a>
+        </li>
+
+        <li class="active">
+          <a href="adminUser">
+            <i class="ti-view-list-alt"></i>
+            <p>Users List</p>
+          </a>
+        </li>
+        <li>
+          <a href="adminProduct">
+            <i class="ti-view-list-alt"></i>
+            <p>admin Product</p>
+          </a>
+        </li>
+        <li>
+          <a href="adminOrder">
+            <i class="ti-pencil-alt2"></i>
+            <p>admin Order</p>
+          </a>
+        </li>
+        <li>
+          <a href="admin-category">
+            <i class="ti-map"></i>
+            <p>admin category</p>
+          </a>
+        </li>
+        <li>
+          <a href="/admin/loadBanners">
+            <i class="ti-map"></i>
+            <p>Banners</p>
+          </a>
+        </li>
+        <li>
+          <a href="admin-offer">
+            <i class="ti-bell"></i>
+            <p>Offer</p>
+          </a>
+        </li>
+        <li>
+          <a href="/admin/salesReport">
+            <i class="ti-download"></i>
+            <p>Product List</p>
+          </a>
+        </li>
+        <li>
+          <a href="/admin/adminlogout"><i class="fa fa-power-off m-r-5 m-l-5"></i> Logout</a>
+        </li>
+      </ul>
     </div>
+  </div>
 
-    <div class="main-panel">
-		<nav class="navbar navbar-default">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar bar1"></span>
-                        <span class="icon-bar bar2"></span>
-                        <span class="icon-bar bar3"></span>
-                    </button>
-                    <a class="navbar-brand" href="#">Users List</a>
-                </div>
-                <div class="collapse navbar-collapse">
-                    <ul class="nav navbar-nav navbar-right">
-                        <li>
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <i class="ti-panel"></i>
-								<p>Stats</p>
-                            </a>
-                        </li>
-                        <li class="dropdown">
-                              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <i class="ti-bell"></i>
-                                    <p class="notification">5</p>
-									<p>Notifications</p>
-									<b class="caret"></b>
-                              </a>
-                              <ul class="dropdown-menu">
-                                <li><a href="#">Notification 1</a></li>
-                                <li><a href="#">Notification 2</a></li>
-                                <li><a href="#">Notification 3</a></li>
-                                <li><a href="#">Notification 4</a></li>
-                                <li><a href="#">Another notification</a></li>
-                              </ul>
-                        </li>
-						<li>
-                            <a href="#">
-								<i class="ti-settings"></i>
-								<p>Settings</p>
-                            </a>
-                        </li>
-                    </ul>
-
-                </div>
-            </div>
-        </nav>
-
-
-        <div class="content">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="card">
-                            <div class="header">
-                               
-                            </div>
-                            <div class="content table-responsive table-full-width">
-                                <table class="table table-striped">
-                                    <thead>
-                                        <th>SI NO</th>
-                                    	<th>Name</th>
-                                    	<th>E-Mail</th>
-                                    	<th>Mobile No</th>
-                                    	<th>Status</th>
-                                        <th>Action</th>
-                                    </thead>
-                                    <tbody>
-                                        <% if(users.length>0){ %>
-                                            <% for(let i=1;i <users.length; i++){ %>  
-                                        <tr>
-                                        	<td><%= i %> </td>
-                                        	<td>
-                                                <div class="d-flex align-items-center">
-                                                    <div class="m-r-10"><a
-                                                            class="btn btn-circle d-flex btn-info text-white"><i class="material-symbols-outlined">
-                                                                account_box
-                                                            </i></a>
-                                                    </div>
-                                                    <div class="d-flex align-items-center">
-                                                        <h4 class="m-b-0 font-16">
-                                                            <%= users[i-1].name %>
-                                                        </h4>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <%= users[i-1].email %>
-                                            </td>
-                                            <td>
-                                                <%= users[i-1].mobile %>
-                                            </td>
-                                            <td>
-                                                <% if(users[i-1].isVerified){ %> 
-                                                    <label class="">
-                                                        <i class="m-r-10 mdi mdi-account-off text-success">Active</i></label>
-                                                    <% } else { %>
-                                                        <label class="">
-                                                            <i
-                                                                class="m-r-10 mdi mdi-account-off text-danger">Blocked</i></label>
-                                                        <% } %>
-                                                            </label>
-                                                            
-                                            </td>
-                                            <td>
-                                                <% if(users[i-1].isVerified) { %>
-                                                    <a class="btn btn-danger text-white"
-                                                        href="/admin/block-user?id=<%= users[i-1]._id %> ">Block</a>
-                                                    <% } else { %>
-                                                        <a  class="btn btn-info"
-                                                            href="/admin/block-user?id=<%= users[i-1]._id %> ">Unblock</a>
-                                                        <% } %>
-                                            </td>
-                                        </tr>
-                                        <% } } else{ %>
-                                            <tr>
-                                                <td colspan="5">Users Not Found</td>
-                                            </tr>
-                                            <% } %>
-                                        
-                                    </tbody>
-                                </table>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+  <div class="main-panel">
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar bar1"></span>
+            <span class="icon-bar bar2"></span>
+            <span class="icon-bar bar3"></span>
+          </button>
+          <a class="navbar-brand" href="#">Users List</a>
         </div>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li>
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                <i class="ti-panel"></i>
+                <p>Stats</p>
+              </a>
+            </li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                <i class="ti-bell"></i>
+                <p class="notification">5</p>
+                <p>Notifications</p>
+                <b class="caret"></b>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="#">Notification 1</a></li>
+                <li><a href="#">Notification 2</a></li>
+                <li><a href="#">Notification 3</a></li>
+                <li><a href="#">Notification 4</a></li>
+                <li><a href="#">Another notification</a></li>
+              </ul>
+            </li>
+            <li>
+              <a href="#">
+                <i class="ti-settings"></i>
+                <p>Settings</p>
+              </a>
+            </li>
+          </ul>
 
-        <footer class="footer">
-            <div class="container-fluid">
-                <nav class="pull-left">
-                    <ul>
+        </div>
+      </div>
+    </nav>
 
-                        <li>
-                            <a href="http://www.creative-tim.com">
-                                Creative Tim
-                            </a>
-                        </li>
-                        <li>
-                            <a href="http://blog.creative-tim.com">
-                               Blog
-                            </a>
-                        </li>
-                        <li>
-                            <a href="http://www.creative-tim.com/license">
-                                Licenses
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
-				<div class="copyright pull-right">
-                    &copy; <script>document.write(new Date().getFullYear())</script>, made with <i class="fa fa-heart heart"></i> by <a href="http://www.creative-tim.com">Creative Tim</a>
-                </div>
+
+    <div class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card">
+              <div class="header">
+
+              </div>
+              <div class="content table-responsive table-full-width">
+                <table class="table table-striped">
+                  <thead>
+                    <th>SI NO</th>
+                    <th>Name</th>
+                    <th>E-Mail</th>
+                    <th>Mobile No</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                  </thead>
+                  <tbody>
+                    <% if(users.length>0){ %>
+                    <% for(let i=1;i <users.length; i++){ %>
+                    <tr>
+                      <td><%= i %> </td>
+                      <td>
+                        <div class="d-flex align-items-center">
+                          <div class="m-r-10"><a class="btn btn-circle d-flex btn-info text-white"><i class="material-symbols-outlined">
+                                account_box
+                              </i></a>
+                          </div>
+                          <div class="d-flex align-items-center">
+                            <h4 class="m-b-0 font-16">
+                              <%= users[i-1].name %>
+                            </h4>
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <%= users[i-1].email %>
+                      </td>
+                      <td>
+                        <%= users[i-1].mobile %>
+                      </td>
+                      <td>
+                        <% if(users[i-1].isVerified){ %>
+                        <label class="">
+                          <i class="m-r-10 mdi mdi-account-off text-success">Active</i></label>
+                        <% } else { %>
+                        <label class="">
+                          <i class="m-r-10 mdi mdi-account-off text-danger">Blocked</i></label>
+                        <% } %>
+                        </label>
+
+                      </td>
+                      <td>
+                        <% if(users[i-1].isVerified) { %>
+                        <a class="btn btn-danger text-white" onclick="return confirm('do you want to block <%= users[i-1].name %>')" href="/admin/block-user?id=<%= users[i-1]._id %> ">Block</a>
+                        <% } else { %>
+                        <a class="btn btn-info" onclick="return confirm('do you want to un block <%= users[i-1].name %>')" href="/admin/block-user?id=<%= users[i-1]._id %> ">Unblock</a>
+                        <% } %>
+                      </td>
+
+                    </tr>
+                    <% } } else{ %>
+                    <tr>
+                      <td colspan="5">Users Not Found</td>
+                    </tr>
+                    <% } %>
+
+                  </tbody>
+                </table>
+
+              </div>
             </div>
-        </footer>
-
-
+          </div>
+        </div>
+      </div>
     </div>
+
+    <footer class="footer">
+      <div class="container-fluid">
+        <nav class="pull-left">
+          <ul>
+
+            <li>
+              <a href="http://www.creative-tim.com">
+                Creative Tim
+              </a>
+            </li>
+            <li>
+              <a href="http://blog.creative-tim.com">
+                Blog
+              </a>
+            </li>
+            <li>
+              <a href="http://www.creative-tim.com/license">
+                Licenses
+              </a>
+            </li>
+          </ul>
+        </nav>
+        <div class="copyright pull-right">
+          &copy; <script>
+            document.write(new Date().getFullYear())
+          </script>, made with <i class="fa fa-heart heart"></i> by <a href="http://www.creative-tim.com">Creative Tim</a>
+        </div>
+      </div>
+    </footer>
+
+
+  </div>
 </div>
+
+
+
 <%- include ('../layouts/adminSidebar') %>

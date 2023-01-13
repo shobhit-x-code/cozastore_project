@@ -60,7 +60,7 @@
                 <li>
                     <a href="/admin/salesReport">
                         <i class="ti-download"></i>
-                        <p>Sales Report</p>
+                        <p>Product List</p>
                     </a>
                   </li>
                 <li>
@@ -135,7 +135,7 @@
                                 
                             </div>
                             <div class="content table-responsive table-full-width">
-                                <table class="table table-striped">
+                                <table id="productlist" class="table table-striped">
                                     <thead>
                                         <th>SI NO</th>
                                     	<th>Name</th>
@@ -179,38 +179,12 @@
                                                             <a class="text-success" href="/admin/edit-product?id=<%= products[i-1]._id %>"><i
                                                                     style="color: green;"
                                                                     class="m-r-5 mdi mdi-border-color"></i>Edit</a><br>
-                                                            <!-- <a data-toggle="modal" style="color: red"; data-target="
-                                                                #deleteModal" href=""><i
-                                                                    class=" m-r-5 mdi mdi-delete-forever"></i>Delete</a> -->
-                                                            <a class="text-danger" href="/admin/delete-product?id=<%= products[i-1]._id %>"><i
+                                                           
+                                                            <a  onclick="return confirm('do you want to delete?')"class="text-danger" href="/admin/delete-product?id=<%= products[i-1]._id %>"><i
                                                                     style="color: #ff0000;"
                                                                     class="m-r-5 mdi mdi-border-color"></i>Delete</a><br>
                                               </td>
-
-                                            <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog"
-                                              aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                              <div class="modal-dialog" role="document">
-                                                  <div class="modal-content">
-                                                      <div class="modal-header">
-                                                          <h5 class="modal-title" id="exampleModalLabel">Delete
-                                                              The Item ?</h5> <button type="button" class="close"
-                                                              data-dismiss="modal" aria-label="Close"> <span
-                                                                  aria-hidden="true">×</span> </button>
-                                                      </div>
-                                                      <div class="modal-body"> Are you sure you want to delete the
-                                                          item : <strong>
-                                                             <p> <%= products[i-1].productName %> </p>
-                                                          </strong> </div>
-                                                      <div class="modal-footer"> <button type="button"
-                                                              class="btn btn-secondary"
-                                                              data-dismiss="modal">Close</button> <a 
-                                                              href="/admin/delete-product?id=<%= products[i-1]._id %>"
-                                                              type="button" class="btn btn-danger">Delete Item</a>
-                                                      </div>
-                                                  </div>
-                                              </div>
-                                          </div>
-                                            </td>  
+  
                                         </tr>
                                         <% } %> 
                                         <% } } else{ %>
@@ -228,6 +202,7 @@
                 </div>
             </div>
         </div>
+        
 
         <footer class="footer">
             <div class="container-fluid">
@@ -260,4 +235,9 @@
 
     </div>
 </div>
+<script>
+    $(document).ready( function () {
+    $('#productlist').DataTable();
+    } );
+  </script>
 <%- include ('../layouts/adminSidebar') %>

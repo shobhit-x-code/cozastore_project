@@ -51,6 +51,8 @@ admin_route.post('/loadBanners',multer.upload.array('bannerImage',3),adminContro
 admin_route.get('/currentBanner',adminMiddleware.isLogin,adminController.currentBanner)
 
 admin_route.get('/salesReport',adminController.salesReport)
+admin_route.get("/exportOrder",adminController.orderDownload);
+admin_route.post("/adminOrder",adminController.updateOrderStatus)
 
 admin_route.get('/adminlogout',adminMiddleware.isLogin,adminController.adminLogout)
 

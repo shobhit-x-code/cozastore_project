@@ -5,6 +5,10 @@ const categorySchema = new mongoose.Schema({
         type:String,
         required:true
     },
+    isAvailable:{
+        type:Number,
+        default:1
+    }
 })
 
 module.exports = mongoose.model('Category',categorySchema)

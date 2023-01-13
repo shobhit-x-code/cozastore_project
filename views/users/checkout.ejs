@@ -1,151 +1,117 @@
 <% if(isLoggedin) { %> <%- include('../layouts/userLoggedinHeader') %> <% }else
-{ %> <%- include('../layouts/userHeader') %> <% } %>
+      { %> <%- include('../layouts/userHeader') %> <% } %>
 
-<div class="nk-main">
-  <div class="container">
-    <div class="nk-store nk-store-checkout">
-      <h3 class="nk-decorated-h-2">
-        <span><span class="text-main-1">Billing</span> Details</span>
-      </h3>
+<body class="animsition">
 
-      <!-- START: Billing Details -->
-      <div class="nk-gap"></div>
-      <form action="/checkout" method="post" class="nk-form">
-        <div class="row vertical-gap">
-          <div class="col-lg-6">
-            <div class="nk-gap-1"></div>
-            <label for="country-sel"
-              >Country <span class="text-main-1">*</span>:</label
-            >
-            <select
-              name="country"
-              class="form-control required"
-              id="country-sel"
-              required
-            >
-              <option value="none">Select a country...</option>
-              <option value="India">India</option>
-              <option value="USA">USA</option>
-              <option value="UK">UK</option>
-              <option value="KSA">KSA</option>
-            </select>
-          </div>
-          <div class="col-lg-6">
-            <div class="nk-gap-2"></div>
-            <div class="form-check">
-              <input
-                class="form-check-input"
-                type="radio"
-                name="payment"
-                id="exampleRadios1"
-                value="Cash-on-Dilevery"
-                checked
-              />
-              <label class="form-check-label" for="exampleRadios1">
-                Cash on Dilevery
-              </label>
-            </div>
-            <div class="form-check">
-              <input
-                class="form-check-input"
-                type="radio"
-                name="payment"
-                id="exampleRadios2"
-                value="RazorPay"
-              />
-              <label class="form-check-label" for="exampleRadios2">
-                RazorPay
-              </label>
-            </div>
-            <div class="form-check">
-              <input
-                class="form-check-input"
-                type="radio"
-                name="payment"
-                id="exampleRadios3"
-                value="PayPal"
-              />
-              <label class="form-check-label" for="exampleRadios3">
-                PayPal
-              </label>
-            </div>
-          </div>
-          <div class="col-lg-12">
-            <label for="address"
-              >Address <span class="text-main-1">*</span>:</label
-            >
-            <input
-              type="text"
-              class="form-control required"
-              name="address"
-              id="address"
-              required
-            />
+  <!-- Cart -->
+  <div class="wrap-header-cart js-panel-cart">
+    <div class="s-full js-hide-cart"></div>
 
-            <div class="nk-gap-1"></div>
-            <label for="city"
-              >Town / City <span class="text-main-1">*</span>:</label
-            >
-            <input
-              type="text"
-              class="form-control required"
-              name="city"
-              id="city"
-              required
-            />
+    <div class="header-cart flex-col-l p-l-65 p-r-25">
+      <div class="header-cart-title flex-w flex-sb-m p-b-8">
+        <span class="mtext-103 cl2">
+          Your Cart
+        </span>
 
-            <div class="nk-gap-1"></div>
-            <div class="row vertical-gap">
-              <div class="col-sm-6">
-                <label for="state"
-                  >State / Country <span class="text-main-1">*</span>:</label
-                >
-                <input
-                  type="text"
-                  class="form-control required"
-                  name="state"
-                  id="state"
-                  required
-                />
-              </div>
-              <div class="col-sm-6">
-                <label for="zip"
-                  >Postcode / ZIP <span class="text-main-1">*</span>:</label
-                >
-                <input
-                  type="tel"
-                  class="form-control required"
-                  name="zip"
-                  id="zip"
-                  required
-                />
-              </div>
-            </div>
-
-            <div class="nk-gap-1"></div>
-          </div>
+        <div class="fs-35 lh-10 cl2 p-lr-5 pointer hov-cl1 trans-04
+                    js-hide-cart">
+          <i class="zmdi zmdi-close"></i>
         </div>
 
-        <button
-          type="submit"
-          class="flex-c-m stext-90 cl0 size-101 bg1 bor1 hov-btn1 p-lr-6 trans-04 js-addcart-detail"
-          style="margin: 3rem"
-          href=""
-        >
-          Place Order
-        </button>
-      </form>
-      <!-- END: Billing Details -->
+      </div>
 
-      <!-- START: Order Products -->
-      <div class="nk-gap-3"></div>
-      <h3 class="nk-decorated-h-2">
-        <span><span class="text-main-1">Your</span> Order</span>
-      </h3>
-      <div class="nk-gap"></div>
+      <div class="header-cart-content flex-w js-pscroll">
+        <ul class="header-cart-wrapitem w-full">
+          <li class="header-cart-item flex-w flex-t m-b-12">
+            <div class="header-cart-item-img">
+              <img src="/assets/images/item-cart-01.jpg" alt="IMG">
+            </div>
+
+            <div class="header-cart-item-txt p-t-8">
+              <a href="#" class="header-cart-item-name m-b-18 hov-cl1
+                          trans-04">
+                White Shirt Pleat
+              </a>
+
+              <span class="header-cart-item-info">
+                1 x $19.00
+              </span>
+            </div>
+          </li>
+
+          <li class="header-cart-item flex-w flex-t m-b-12">
+            <div class="header-cart-item-img">
+              <img src="/assets/images/item-cart-02.jpg" alt="IMG">
+            </div>
+
+            <div class="header-cart-item-txt p-t-8">
+              <a href="#" class="header-cart-item-name m-b-18 hov-cl1
+                          trans-04">
+                Converse All Star
+              </a>
+
+              <span class="header-cart-item-info">
+                1 x $39.00
+              </span>
+            </div>
+          </li>
+
+          <li class="header-cart-item flex-w flex-t m-b-12">
+            <div class="header-cart-item-img">
+              <img src="/assets/images/item-cart-03.jpg" alt="IMG">
+            </div>
+
+            <div class="header-cart-item-txt p-t-8">
+              <a href="#" class="header-cart-item-name m-b-18 hov-cl1
+                          trans-04">
+                Nixon Porter Leather
+              </a>
+
+              <span class="header-cart-item-info">
+                1 x $17.00
+              </span>
+            </div>
+          </li>
+        </ul>
+
+        <div class="w-full">
+          <div class="header-cart-total w-full p-tb-40">
+            Total: $75.00
+          </div>
+
+          <div class="header-cart-buttons flex-w w-full">
+            <a href="/" class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3
+                        p-lr-15 trans-04 m-r-8 m-b-10">
+              View Cart
+            </a>
+
+            <a href="shoping-cart.html" class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3
+                        p-lr-15 trans-04 m-b-10">
+              Check Out
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+
+
+  <div class="nk-main mt-5 ">
+    <div class="container mt-5">
+      <h3
+          class="nk-decorated-h-2">
+          <br><br>
+          <span><span
+              class="text-main-1">Apply</span>
+            Coupon</span>
+            <br><br>
+        </h3>
       <div class="table-responsive">
-        <table class="nk-table nk-table-sm">
-          <% if(id) { %>
+        <table class="nk-table
+        nk-table-sm">
+        <% if(id) { %>
           <thead class="thead-default">
             <tr>
               <th class="nk-product-cart-title">Product</th>
@@ -156,46 +122,325 @@
             <% for(let key of cartProducts.item){ %>
             <tr>
               <td class="nk-product-cart-title">
-                <%= key.productId.name %> &times; <%= key.qty %>
+                <%= key.productId.name  %> &times; <%= key.qty %>
               </td>
               <td class="nk-product-cart-total">
-                ₹ <%= key.productId.price*key.qty %>
+                ₹ <%=key.productId.price*key.qty%>
               </td>
             </tr>
             <% } %>
 
             <tr class="nk-store-cart-totals-subtotal">
               <td>Subtotal</td>
-              <td>₹ <%= cartProducts.totalPrice %></td>
+              <td>₹ <%=cartProducts.totalPrice%></td>
             </tr>
             <tr class="nk-store-cart-totals-shipping">
               <td>Shipping</td>
-              <td>Free Shipping</td>
+              <td>Free
+                Shipping</td>
             </tr>
             <tr class="nk-store-cart-totals-shipping">
               <td>Coupon</td>
-              <td><%= offer.name %></td>
+              <% if(offer){  %>
+              <td>
+                <%=offer.name%>
+              </td>
+              <% }else{  %>
+              <td>
+                No Offers
+              </td>
+              <% } %>
             </tr>
             <tr class="nk-store-cart-totals-total">
               <td>Total</td>
-              <td>₹ <%= couponTotal %></td>
+              <td>
+              <td>₹
+                <%= couponTotal%></td>
+              </td>
             </tr>
           </tbody>
         </table>
       </div>
+      <form action="/add-coupon" method="post">
+        <div class="row
+          vertical-gap">
+          <div class="col-sm-12">
+            <label for="state">Coupon
+              Code:
+              <span class="text-main-1
+                col-sm-12">*</span>:</label>
+            <div class="col
+              col-sm-12">
+              <input type="text" class="col-sm-6 form-control required" name="offer" id="offer">
+              <button type="submit" style="border-radius: 1rem;margin-top:2rem;padding:.5rem;" class="btn-rounded btn-secondary">UpdateTotals</button>
+            </div>
+          </div>
+        </div>
+      </form>
+      <div class="nk-store nk-store-checkout mt-5">
+        <h3 class="nk-decorated-h-2">
 
-      <!-- END: Order Products -->
+          <span><span class="text-main-1">Billing</span> Details</span>
+          <br><br>
+        </h3>
 
-      <div class="nk-gap-2"></div>
+
+        <div class="row">
+          <%if(userAddress.length>0){
+                    for(let key of userAddress){%>
+          <a href="/checkout?addressid=<%=key._id%>">
+            <div class="col-lg-4">
+              <a href="/checkout?addressid=<%=key._id%>">
+                <div class="card card-dashboard">
+
+                  <a href="/checkout?addressid=<%=key._id%>">
+                    <div class="card-body">
+                      <h3 class="card-title">Shipping Address</h3><!-- End .card-title -->
+                      <p><%= key.firstname %> <%=key.lastname%><br>
+                        <%= key.address %> , <%= key.address2 %><br>
+                        <%= key.city %> , <%= key.state %><br>
+                        <%= key.country %><br>
+                        <%= key.pin %><br>
+                        <%= key.mobileno %><br>
+                        <%= key.email %><br><br>
+                        <!-- <a href="#">Edit <i class="icon-edit"></i></a> -->
+                        <a href="/deleteaddress?id=<%=
+                   key._id %>"><i class="icon-close"></i>
+                          delete</a>
+                      </p>
+                    </div>
+                  </a>
+                  <!-- End .card-body -->
+                </div>
+              </a>
+              <!-- End .card-dashboard -->
+            </div>
+          </a>
+          <!-- End .col-lg-6 -->
+          <%}}else{%>
+
+          <div class="col-lg-6">
+            <a href="">
+              <div class="card card-dashboard">
+                <div class="card-body">
+                  <h3 class="card-title">Shipping
+                    Address</h3>
+
+                  <p>You have not set up this
+                    type of address yet.<br>
+                </div>
+              </div>
+            </a>
+          </div>
+          <%}%>
+       </div><!-- End .row -->
+     
+
+
+        <!-- START: Billing Details -->
+        <div class="nk-gap"></div>
+        <form action="/checkout" method="post" class="nk-form">
+          <br><br>
+          <div class="row
+        vertical-gap">
+            <% if
+          (addSelect
+          !=
+          null)
+          {%>
+          <div class="col-sm-6">
+            <label>First
+              Name
+              *</label>
+            <input type="text" class="form-control" name="firstname" value="<%=
+              addSelect.firstname
+              %>" required>
+          </div><!-- End .col-sm-6 -->
+          <div class="col-sm-6">
+            <label>Last
+              Name
+              *</label>
+            <input type="text" class="form-control" name="lastname" value="<%=
+              addSelect.lastname
+              %>" required>
+          </div><!-- End .col-sm-6 -->
+        </div><!-- End .row -->
+        <div class="col-lg-6">
+          <div class="nk-gap-1"></div>
+          <label for="country-sel">Country
+            <span class="text-main-1">*</span>:</label>
+          <input type="text" class="form-control
+            required" name="country" id="country" value="<%=addSelect.country%>" required />
+        </div>
+        <div class="col-lg-12">
+          <label for="address">Address
+            <span class="text-main-1">*</span>:</label>
+          <input type="text" class="form-control
+            required" name="address" id="address" value="<%=addSelect.address%>" required />
+          <div class="nk-gap-1"></div>
+          <label for="city">Town
+            /
+            City
+            <span class="text-main-1">*</span>:</label>
+          <input type="text" class="form-control
+            required" name="city" id="city" value="<%=addSelect.city%>" required />
+          <div class="nk-gap-1"></div>
+          <div class="row
+            vertical-gap">
+            <div class="col-sm-6">
+              <label for="state">State
+                /
+                Country
+                <span class="text-main-1">*</span>:</label>
+              <input type="text" class="form-control
+                required" name="state" id="state" value="<%=addSelect.state%>" required />
+            </div>
+            <div class="col-sm-6">
+              <label for="zip">Postcode
+                /
+                ZIP
+                <span class="text-main-1">*</span>:</label>
+              <input type="tel" class="form-control
+                required" name="zip" id="zip" value="<%=addSelect.zip%>" required />
+            </div>
+          </div>
+          <div class="nk-gap-1"></div>
+        </div>
+        <%} else
+          {%>
+        <h1>no
+          address
+          found</h1>
+        <%}%>
+          </div>
+          <h3
+            class="nk-decorated-h-2">
+            <br><br>
+            <span><span
+                class="text-main-1">Your</span>
+              Order</span>
+          </h3>
+          <div
+            class="nk-gap-3">
+            <div
+              class="col-lg-6">
+              <div
+                class="nk-gap-2"></div>
+              <div
+                class="form-check">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="payment"
+                  id="exampleRadios1"
+                  value="Cash-on-Dilevery"
+                  checked
+                  />
+                <label
+                  class="form-check-label"
+                  for="exampleRadios1">
+                  Cash
+                  on
+                  Dilevery
+                </label>
+              </div>
+              <div
+                class="form-check">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="payment"
+                  id="exampleRadios2"
+                  value="RazorPay"
+                  />
+                <label
+                  class="form-check-label"
+                  for="exampleRadios2">
+                  RazorPay
+                </label>
+              </div>
+              <div
+                class="form-check">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="payment"
+                  id="exampleRadios3"
+                  value="PayPal"
+                  />
+                <label
+                  class="form-check-label"
+                  for="exampleRadios3">
+                  PayPal
+                </label>
+              </div>
+            </div>
+          </div>
+          <button
+            type="submit"
+            class="flex-c-m
+            stext-90
+            cl0
+            size-101
+            bg1
+            bor1
+            hov-btn1
+            p-lr-6
+            trans-04
+            js-addcart-detail"
+            style="margin:
+            3rem"
+            href="">
+            Place
+            Order
+          </button>
+          </form>
+      </div>
     </div>
-  </div>
-  <div class="nk-gap-2"></div>
+    <div
+      class="nk-gap-2"></div>
+    <% }else{ %>
+        <h4>Not
+          Signed
+          in.
+          <br />Signin
+          to
+          access
+          Checkout
+        </h4>
+        <a href="/login" class="btn
+          btn-danger
+          ml-2">login</a>
+        <div class="nk-gap-2"></div>
+        <% } %>
+      </div>
+      <script>
+        qty.forEach(q => {
+          q.addEventListener('change', qtyHandler)
+        })
+        const applyCoupon = async (e) => {
+          try {
+            const offer = document.getElementById('offer').value
+            const amount = {
+              coupon: offer
+            }
+            const response = await fetch('/add-coupon', {
+              method: 'post',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify(amount)
+            })
+            const value = await response.json()
+            document.querySelector('#final').innerText = value.updatedTotal
+            document.querySelector('#final1').innerText = value.updatedTotal
+          } catch (error) {
+            console.log(error.message);
+          }
+        }
+        document.getElementById('alan').addEventListener('click', applyCoupon)
+      </script>
 
-  <% }else{ %>
-  <h4>Not Signed in. <br />Signin to access Checkout</h4>
-  <a href="/login" class="btn btn-danger ml-2">login</a>
-  <div class="nk-gap-2"></div>
-  <% } %>
-</div>
-
-<%- include('../layouts/userFooter') %>
+      <%-
+          include('../layouts/userFooter')
+          %>

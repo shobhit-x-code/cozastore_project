@@ -56,6 +56,10 @@ app.use('/', user_route)
 // for admin route
 app.use('/admin', admin_route)
 
+app.get("*",function(req,res){
+  res.status(404).render("404page.ejs");
+})
+
 
 app.listen(3000, function(){
     console.log("server is running")

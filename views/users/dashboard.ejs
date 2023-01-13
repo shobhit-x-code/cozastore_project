@@ -1,96 +1,260 @@
 
 	<%- include('../layouts/userLoggedinHeader') %>
 
-<div class="container row">
-  <div class="col-6">
-    <h1 class="d-inline">Welcome  <%= user.name %> </h1>
-  </div>
-  <div class="col-6">
-    <a href="/logout" class="btn btn-primary ms-2 mt-5 ">Logout</a>
-  </div>
+  <!-- START: Tabs  -->
+  <div class="container row">
+    <div class="container row mt-5">
+
+        <div class="col-6">
+            <h3 class="d-inline">Welcome <%= user.name %>
+            </h3>
+            <br><br>
+        </div>
+
+    </div>
 </div>
-                <!-- START: Tabs  -->
-                <div class="nk-tabs container">
-                  <div class="nk-gap"></div>
-                  <ul class="nav nav-tabs" role="tablist">
-                      <li class="nav-item">
-                          <a class="nav-link active" href="#tabs-1-1" role="tab" data-toggle="tab">User Data</a>
-                      </li>
-                      <li class="nav-item">
-                          <a class="nav-link" href="#tabs-1-2" role="tab" data-toggle="tab">Orders</a>
-                      </li>
-                      <li class="nav-item">
-                          <a class="nav-link" href="#tabs-1-3" role="tab" data-toggle="tab">Tab 3</a>
-                      </li>
-                  </ul>
-                  <div class="tab-content text-light">
-                      <div role="tabpanel" class="tab-pane fade show active" id="tabs-1-1">
-                          <div class="nk-gap"></div>
-                          
-                          <section class="container">
-                            <table class="table text-light">
-                                <thead>
-                                  <tr style="color: black;">
-                                    <th scope="col">Name</th>
-                                    <th scope="col">Email</th>
-                                    <th scope="col">Mobile</th>
-                                    <th scope="col">Actions</th>
-                                  </tr>
-                                </thead>
-                                
-                                <tbody>
-                                  <tr style="color: black;">
-                                    <td><%= user.name %></td>
-                                    <td><%= user.email %></td>
-                                    <td><%= user.mobile %></td>
-                                    <td><a href="/edit-user?id=<%= user._id %>" class="btn btn-primary ms-2 ">Edit</a></td>
-                                    
-                                  </tr>
-                                </tbody>
-                              </table>
-                        </section>
 
-                          <div class="nk-gap"></div>
-                      </div>
-                      <div role="tabpanel" class="tab-pane fade" id="tabs-1-2">
-                          <div class="nk-gap"></div>
-                          
-                          <section class="container">
-                            <table class="table text-light">
-                                <thead>
-                                  <tr style="color: black;">
-                                    <th scope="col">OrderId</th>
-                                    <th scope="col">Time</th>
-                                    <th scope="col">Payment</th>
-                                    <th scope="col">Status</th>
-                                    <th scope="col">Actions</th>
+<div class="nk-tabs container">
+    <div class="nk-gap"></div>
+    <ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link active" href="#tabs-1-1" role="tab" data-toggle="tab">User Data</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#tabs-1-2" role="tab" data-toggle="tab">Orders</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#tabs-1-3" role="tab" data-toggle="tab">Address</a>
+        </li>
+    </ul>
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane fade show active" id="tabs-1-1">
+            <div class="nk-gap"></div>
 
-                                  </tr>
-                                </thead>
-                                <% for(let key of userOrders){ %>
-                                <tbody>
-                                  <tr style="color: black;">
-                                    <td><%= key._id %></td>
-                                    <td><%= key.createdAt %></td>
-                                    <td><%= key.payment %></td>
-                                    <td><%= key.status %></td>
-                                    <td><a href="/cancel-order?id=<%= key._id %>" class="btn btn-primary ms-2 ">Cancel Order</a></td>
-                                    <td><a href="/view-order?id=<%= key._id %>" class="btn btn-primary ms-2 ">View Details</a></td>
-                                  </tr>
-                                </tbody>
-                                <% } %>
-                              </table>
-                        </section>
+            <section class="container">
+                <table class="table ">
+                    <thead>
+                        <tr style="color: black;">
+                            <th scope="col">Name</th>
+
+                            <th scope="col">Email</th>
+                            <th scope="col">Mobile</th>
+                            <th scope="col">Actions</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr style="color: black;">
+                            <td>
+                                <%= user.name %>
+                            </td>
+                            <td>
+                                <%= user.email %>
+                            </td>
+                            <td>
+                                <%= user.mobile %>
+                            </td>
+                            <td><a href="/edit-user?id=<%= user._id %>" class="btn btn-primary ms-2 ">Edit</a></td>
+
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <div class="nk-gap"></div>
+        </div>
+        <div role="tabpanel" class="tab-pane fade" id="tabs-1-2">
+            <div class="nk-gap"></div>
+
+            <section class="container">
+                <table class="table text-light">
+                    <thead>
+                        <tr style="color: black;">
+                            <th scope="col">OrderId</th>
+                            <th scope="col">Date Purchased</th>
+                            <th scope="col">Payment</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Actions</th>
+
+                        </tr>
+                    </thead>
+                    <% for(let key of userOrders){ %>
+                        <tbody>
+                            <tr style="color: black;">
+                                <td>
+                                    <%= key._id %>
+                                </td>
+                                <td>
+                                    <%= key.createdAt.toDateString() %>
+                                </td>
+                                <td>
+                                    <%= key.payment %>
+                                </td>
+                                <td>
+                                    <%= key.status %>
+                                </td>
+                                <td><a href="/cancel-order?id=<%= key._id %>" class="btn btn-primary ms-2 ">Cancel
+                                        Order</a></td>
+                                <td><a href="/view-order?id=<%= key._id %>" class="btn btn-primary ms-2 ">View
+                                        Details</a></td>
+                            </tr>
+                        </tbody>
+                        <% } %>
+                </table>
+            </section>
 
 
-                          <div class="nk-gap"></div>
-                      </div>
-                      <div role="tabpanel" class="tab-pane fade" id="tabs-1-3">
-                          <div class="nk-gap"></div>
-                          <p>I have related the substance of several conversations I had with my master during the greatest part of the time I had the, for brevity sake, omitted much moredown.</p>
-                          <div class="nk-gap"></div>
-                      </div>
-                  </div>
-              </div>
-              <!-- END: Tabs -->
+            <div class="nk-gap"></div>
+        </div>
+        <div role="tabpanel" class="tab-pane fade" id="tabs-1-3">
+            <div class="nk-gap"></div>
+
+
+
+            <section class="bg0 p-t-40 p-b-116">
+                <div class="container">
+                    <div class="flex-w flex-tr">
+                        <div class="size-210 bor10 p-lr-70 p-t-20 p-b-70 p-lr-15-lg w-full-md">
+
+                            <form action="/addAddress" method="post">
+
+                                <h4 class="mtext-105 cl2 txt-center p-b-30">
+                                    ADD ADDRESS
+                                </h4>
+
+                                <!-- <div class="bor8 m-b-20 how-pos4-parent">
+                                            <input class="stext-111 cl2 plh3 size-116 p-l-62 p-r-30" type="text" name="email" placeholder="Your Email Address">
+                                            <img class="how-pos4 pointer-none" src="images/icons/icon-email.png" alt="ICON">
+                                        </div>
+                
+                                        <div class="bor8 m-b-30">
+                                            <textarea class="stext-111 cl2 plh3 size-120 p-lr-28 p-tb-25" name="msg" placeholder="How Can We Help?"></textarea>
+                                        </div>  -->
+
+                                <label>Name *</label>
+                                <input type="text" class="form-control" name="firstname" placeholder="First name"
+                                    required>
+
+                                <label>Last Name *</label>
+                                <input type="text" class="form-control" name="lastname" placeholder="Last name"
+                                    required>
+
+
+
+                                <label>Country *</label>
+                                <input type="text" class="form-control" name="country" placeholder="Country"
+                                    required>
+
+                                <label>address *</label>
+                                <input type="text" class="form-control" placeholder="Address" name="address"
+                                    required>
+
+
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <label>Town / City *</label>
+                                        <input type="text" class="form-control" name="city" placeholder="City"
+                                            required>
+                                    </div><!-- End .col-sm-6 -->
+
+                                    <div class="col-sm-6">
+                                        <label>State / County *</label>
+                                        <input type="text" class="form-control" name="state" placeholder="State"
+                                            required>
+                                    </div><!-- End .col-sm-6 -->
+                                </div><!-- End .row -->
+
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <label>Postcode / ZIP *</label>
+                                        <input type="text" class="form-control" name="zip"
+                                            placeholder="Postcode/ZIP" required>
+                                    </div><!-- End .col-sm-6 -->
+
+                                    <div class="col-sm-6">
+                                        <label>Phone *</label>
+                                        <input type="tel" class="form-control" name="mno" placeholder="Phone"
+                                            required>
+                                    </div><!-- End .col-sm-6 -->
+                                </div><!-- End .row -->
+
+                                <!-- <button type="submit" class="btn btn-outline-primary-2">
+                                           <span>Update</span>
+                                           <i class="icon-long-arrow-right"></i>
+                                       </button> -->
+                                <!-- <a href="/dashboard" class="btn btn-outline-primary-2"><span>GO BACK</span><i class="icon-long-arrow-right"></i></a>
+                                        </div> -->
+                                <!-- End .col-lg-9 -->
+                                <br>
+                                <button type="submit"
+                                    class="flex-c-m stext-101 cl0 size-121 bg3 bor1 hov-btn3 p-lr-15 trans-04 pointer">
+                                    Submit
+                                </button>
+                            </form>
+                        </div>
+
+
+                        <!-- </div> -->
+
+                        <div class="size-210 bor10 flex-w flex-col-m p-lr-93 p-tb-30  p-lr-15-lg w-full-md">
+
+
+
+
+                            <div class="row">
+                                <%if(userAddress.length>0){
+                                    for(let key of userAddress){%>
+                                    <div class="col-lg-6">
+                                        <div class="card card-dashboard">
+
+                                            <div class="card-body">
+                                                <h3 class="card-title">Billing Address</h3><!-- End .card-title -->
+
+                                                <p>
+                                                    <%= key.firstname %>
+                                                        <%=key.lastname%><br>
+                                                            <%= key.address %> <br>
+                                                                <%= key.city %> , <%= key.state %><br>
+                                                                        <%= key.country %><br>
+                                                                            Pin: <%= key.zip %><br>
+                                                                                Phone: <%= key.mobile %><br>
+
+                                                                                    <!-- <a href="#">Edit <i class="icon-edit"></i></a> -->
+                                                                                    <a
+                                                                                        href="/deleteAddress?id=<%= key._id %>"><i
+                                                                                            class="icon-close"></i>
+                                                                                        delete</a>
+                                                </p>
+                                            </div><!-- End .card-body -->
+                                        </div><!-- End .card-dashboard -->
+                                    </div><!-- End .col-lg-6 -->
+                                    <%}}else{%>
+
+
+                                        <div class="col-lg-6">
+                                            <div class="card card-dashboard">
+                                                <div class="card-body">
+                                                    <h3 class="card-title">Shipping Address</h3>
+                                                    <!-- End .card-title -->
+
+                                                    <p>You have not set up this type of address yet.<br>
+                                                        <a href="#">Edit <i class="icon-edit"></i></a>
+                                                    </p>
+                                                </div><!-- End .card-body -->
+                                            </div><!-- End .card-dashboard -->
+                                        </div><!-- End .col-lg-6 -->
+                                        <%}%>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+        </section>
+
+
+
+        <div class="nk-gap"></div>
+    </div>
+</div>
+
 <%- include('../layouts/userFooter') %>

@@ -13,6 +13,10 @@ const offerSchema = new mongoose.Schema({
         type:Number,
         required:true
     },
+    isAvailable:{
+        type:Number,
+        default:1
+    },
     usedBy:[{
         type:mongoose.Types.ObjectId,
         ref:'User'
