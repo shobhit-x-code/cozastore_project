@@ -5,12 +5,11 @@ const Offer = require("../model/offerModel");
 const Category = require("../model/categoryModel");
 const Banner = require("../model/bannerModel");
 const objectId = require("mongodb").ObjectId;
-const excelJs = require('exceljs')
+const excelJs = require("exceljs");
 
 const bcrypt = require("bcrypt");
 
-let isAdminLoggedin;
-isAdminLoggedin = false;
+let isAdminLoggedin = false;
 let adminSession = null || {};
 let orderType = "all";
 
@@ -26,7 +25,6 @@ const securePassword = async (password) => {
 const path = require("path");
 const multer = require("multer");
 const { ObjectId } = require("mongodb");
-const { order } = require("paypal-rest-sdk");
 let Storage = multer.diskStorage({
   destination: "./public/assets/uploads/",
   filename: (req, file, cb) => {
@@ -159,8 +157,8 @@ const loadAdminHome = async (req, res) => {
       for (let i = 0; i < completeOrder.length; i++) {
         for (let j = 0; j < completeOrder[i].products.item.length; j++) {
           const genreData = completeOrder[i].products.item[j].productId.genre;
-          const isExisting = categoryArray.findIndex(genre => {
-            return genre === genreData
+          const isExisting = categoryArray.findIndex((genre) => {
+            return genre === genreData;
           });
           orderGenreCount[isExisting]++;
           console.log(genreData);
@@ -183,8 +181,6 @@ const loadAdminHome = async (req, res) => {
     console.log(error.message);
   }
 };
-
-
 
 const viewUser = async (req, res) => {
   try {
@@ -306,21 +302,30 @@ const deleteProduct = async (req, res) => {
 
 const viewOrder = async (req, res) => {
   try {
-    const productData = await Product.find()
-    const userData = await User.find({is_admin:0})
+    const productData = await Product.find();
+    const userData = await User.find({ is_admin: 0 });
     // console.log(userData);
-    const orderData = await Order.find().sort({createdAt :-1});
-    for(let key of orderData){
-      await key.populate('products.item.productId');
-      await key.populate('userId');
+    const orderData = await Order.find().sort({ createdAt: -1 });
+    for (let key of orderData) {
+      await key.populate("products.item.productId");
+      await key.populate("userId");
       // console.log(orderData.products);
     }
-   
+
     if (orderType == undefined) {
-      res.render("adminOrder", { users:userData, product: productData, order: orderData });
+      res.render("adminOrder", {
+        users: userData,
+        product: productData,
+        order: orderData,
+      });
     } else {
       id = req.query.id;
-      res.render("adminOrder", { users:userData, product: productData, id: id, order: orderData });
+      res.render("adminOrder", {
+        users: userData,
+        product: productData,
+        id: id,
+        order: orderData,
+      });
     }
   } catch (error) {
     console.log(error);
@@ -347,18 +352,20 @@ const adminConfirmorder = async (req, res) => {
 const deleteCategory = async (req, res) => {
   try {
     const id = req.query.id;
-    const catagoryData = await Category.updateOne({_id: id},{$set: {isAvailable:0}})
-    
+    const catagoryData = await Category.updateOne(
+      { _id: id },
+      { $set: { isAvailable: 0 } }
+    );
+
     res.redirect("admin-category");
   } catch (error) {
     console.log(error.message);
   }
 };
 
-
 const viewCategory = async (req, res) => {
   try {
-    const categoryData = await Category.find({isAvailable:1});
+    const categoryData = await Category.find({ isAvailable: 1 });
     console.log(categoryData);
     res.render("admin-category", { category: categoryData });
   } catch (error) {
@@ -367,12 +374,15 @@ const viewCategory = async (req, res) => {
 };
 
 const addCategory = async (req, res) => {
-  const categoryData = await Category.findOne( { name: req.body.category})
-  const categoryAll =await Category.find()
+  const categoryData = await Category.findOne({ name: req.body.category });
+  const categoryAll = await Category.find();
   console.log(categoryData);
-  if(categoryData){
-    res.render('admin-category', { category:categoryAll, message: 'category already Exists'})
-  } else{
+  if (categoryData) {
+    res.render("admin-category", {
+      category: categoryAll,
+      message: "category already Exists",
+    });
+  } else {
     try {
       const category = Category({
         name: req.body.category,
@@ -386,7 +396,7 @@ const addCategory = async (req, res) => {
 };
 
 const adminLoadOffer = async (req, res) => {
-  const offerData = await Offer.find({isAvailable:1});
+  const offerData = await Offer.find({ isAvailable: 1 });
   res.render("admin-offer", { offer: offerData });
 };
 
@@ -401,14 +411,17 @@ const adminStoreOffer = async (req, res) => {
 };
 
 const deleteOffer = async (req, res) => {
-    try {
-      const id = req.query.id;
-      const offerData = await Offer.updateOne({_id: id},{$set: {isAvailable:0}})
-      res.redirect("admin-offer");
-    } catch (error) {
-      console.log(error.message);
-    }
-  };
+  try {
+    const id = req.query.id;
+    const offerData = await Offer.updateOne(
+      { _id: id },
+      { $set: { isAvailable: 0 } }
+    );
+    res.redirect("admin-offer");
+  } catch (error) {
+    console.log(error.message);
+  }
+};
 
 const loadBanners = async (req, res) => {
   try {
@@ -458,7 +471,6 @@ const salesReport = async (req, res) => {
     const productData = await Product.find();
     res.render("salesReport", {
       products: productData,
-      
     });
   } catch (error) {
     console.log(error.message);
@@ -474,61 +486,62 @@ const adminLogout = async (req, res) => {
   res.redirect("/admin/login");
 };
 
-const orderDownload = async function(req,res){
+const orderDownload = async function (req, res) {
   try {
     const workBook = new excelJs.Workbook();
     const workSheet = workBook.addWorksheet("My Order");
-    workSheet.columns=[
-      {header:"S no.",key:"s_no."},
-      {header:"Name",key:"userId"},
-      {header:"payment",key:"payment"},
-      {header:"address",key:"address"},
-      {header:"createdAt",key:"createdAt"},
-      {header:"offer",key:"offer"}
-    ]
+    workSheet.columns = [
+      { header: "S no.", key: "s_no." },
+      { header: "Name", key: "userId" },
+      { header: "payment", key: "payment" },
+      { header: "address", key: "address" },
+      { header: "createdAt", key: "createdAt" },
+      { header: "offer", key: "offer" },
+    ];
 
-    let counter =1;
+    let counter = 1;
 
     const orderData = await Order.find({});
 
-    orderData.forEach(function(order){
+    orderData.forEach(function (order) {
       order.s_no = counter;
       workSheet.addRow(order);
       counter++;
-    })
+    });
 
-    workSheet.getRow(1).eachCell(function(cell){
-      cell.font = {bold:true};
-    })
+    workSheet.getRow(1).eachCell(function (cell) {
+      cell.font = { bold: true };
+    });
 
     res.setHeader(
       "Content-Type",
       "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-    )
+    );
 
-    res.setHeader(
-      "Content-Disposition",`attachment;filename=order.xlsx`
-    )
-    
-    return workBook.xlsx.write(res).then(function(){
+    res.setHeader("Content-Disposition", `attachment;filename=order.xlsx`);
+
+    return workBook.xlsx.write(res).then(function () {
       res.status(200);
-    })
+    });
   } catch (error) {
-    console.log(error.message)
+    console.log(error.message);
   }
-}
+};
 
 const updateOrderStatus = async (req, res) => {
   try {
-      // const status=req.body.status
-      console.log(req.body);
-      let orderId = req.body.orderid;
-      const a = await Order.findByIdAndUpdate({ _id: objectId(orderId) }, { $set: { status: req.body.status } })
-      res.redirect("/admin/adminOrder")
+    // const status=req.body.status
+    console.log(req.body);
+    let orderId = req.body.orderid;
+    const a = await Order.findByIdAndUpdate(
+      { _id: objectId(orderId) },
+      { $set: { status: req.body.status } }
+    );
+    res.redirect("/admin/adminOrder");
   } catch (error) {
-      console.log(error.messaage);
+    console.log(error.messaage);
   }
-}
+};
 
 module.exports = {
   loadAdminHome,
@@ -559,5 +572,5 @@ module.exports = {
   salesReport,
   deleteOffer,
   orderDownload,
-  updateOrderStatus
+  updateOrderStatus,
 };

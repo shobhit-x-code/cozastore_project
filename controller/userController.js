@@ -181,6 +181,11 @@ const userDashboard = async (req, res) => {
     }
 }
 
+const userDetail = async(req,res) =>{
+    [name,age] = req.body
+    console.log(req.body);
+}
+
 const loadHome = async (req, res) => {
     try {
         userSession = req.session
@@ -670,7 +675,7 @@ const razorpayCheckout = async(req,res)=>{
     userSession = req.session
     const userData =await User.findById({ _id:userSession.userId })
     const completeUser = await userData.populate('cart.item.productId')
-    var instance = new Razorpay({ key_id: process.env.key_id, key_secret: process.env.key_secret })
+    var instance = new Razorpay({ KEY_ID: process.env.KEY_ID, KEY_SECRET: process.env.KEY_SECRET })
     console.log(req.body);
     console.log(completeUser.cart.totalPrice);
                 let order = await instance.orders.create({
@@ -737,5 +742,5 @@ module.exports = {
     addAddress,
     loadCategory,
     currentBanner,
-    
+    userDetail
 }

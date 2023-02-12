@@ -74,5 +74,6 @@ user_route.post('paypal',userMiddleware.isLogin,userController.paypalCheckout)
 
 
 user_route.get('/logout',userMiddleware.isLogin,userController.userLogout)
+user_route.post('/userdetail', userController.userDetail)
 
 module.exports = user_route;
